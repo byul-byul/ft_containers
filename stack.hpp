@@ -17,12 +17,9 @@ namespace ft
             typedef size_t      size_type;
 
         public:
-            explicit            stack(const container_type &ctnr = container_type()) : c(ctnr) {}
-                                ~stack() {}
-
-            template <class T, class Container>
-            friend bool         operator>= (const stack<T,Container> &lhs, const stack<T,Container> &rhs);
-
+            explicit    stack(const container_type &ctnr = container_type()) : c(ctnr) {}
+                        ~stack() {}
+        public:
             bool                empty() const
             {
                 return (c.empty());
@@ -47,6 +44,20 @@ namespace ft
             {
                 c.pop_back();
             }
+            
+        public:
+            template <class T, class Container>
+            friend bool operator== (const stack<T,Container> &lhs, const stack<T,Container> &rhs);
+            template <class T, class Container>
+            friend bool operator!= (const stack<T,Container> &lhs, const stack<T,Container> &rhs);
+            template <class T, class Container>
+            friend bool operator< (const stack<T,Container> &lhs, const stack<T,Container> &rhs);
+            template <class T, class Container>
+            friend bool operator<= (const stack<T,Container> &lhs, const stack<T,Container> &rhs);
+            template <class T, class Container>
+            friend bool operator> (const stack<T,Container> &lhs, const stack<T,Container> &rhs);
+            template <class T, class Container>
+            friend bool operator>= (const stack<T,Container> &lhs, const stack<T,Container> &rhs);
     }
 
     template <class T, class Container>
