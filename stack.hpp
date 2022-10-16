@@ -1,11 +1,11 @@
 #ifndef STACK_HPP
 # define STACK_HPP
 
-# include <vector> // <vector> --> "vector.hpp"
+# include <vector> // replace <vector> --> "vector.hpp"
 
 namespace ft
 {
-    template <class T, class Container = std::vector<T> > // vector<T> --> ft::vector<T> !!!
+    template <class T, class Container = std::vector<T> > // replace std::vector<T> --> ft::vector<T>
     class stack
     {
         public:
@@ -13,9 +13,14 @@ namespace ft
             typedef Container   container_type;
             typedef size_t      size_type;
 
+        protected:
+            container_type      c;
+
         public:
-            explicit    stack(const container_type &ctnr = container_type()) : c(ctnr) {}
-                        ~stack() {}
+            explicit    stack(const container_type &ctnr = container_type())
+                        : c(ctnr) {}
+            ~stack() {}
+
         public:
             bool                empty() const
             {
@@ -33,7 +38,7 @@ namespace ft
             {
                 return (c.back());
             }
-            void                push (const value_type &val)
+            void                push(const value_type &val)
             {
                 c.push_back(val);
             }
@@ -42,7 +47,7 @@ namespace ft
                 c.pop_back();
             }
             
-        public:
+        public: // should research for T_in & Container_in: why I can't use types T and Container in next functions?
             template <class T_in, class Container_in>
             friend bool operator== (const stack<T_in,Container_in> &lhs, const stack<T_in,Container_in> &rhs);
             template <class T_in, class Container_in>
@@ -55,9 +60,6 @@ namespace ft
             friend bool operator> (const stack<T_in,Container_in> &lhs, const stack<T_in,Container_in> &rhs);
             template <class T_in, class Container_in>
             friend bool operator>= (const stack<T_in,Container_in> &lhs, const stack<T_in,Container_in> &rhs);
-
-        protected:
-            container_type      c;
     };
 
     template <class T, class Container>
